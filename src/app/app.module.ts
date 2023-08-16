@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
+import { StoreModule } from '@ngrx/store';
 
 //Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -23,6 +24,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { appReducer } from './app.reducer';
+import { provideStoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -45,11 +48,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    StoreModule.forRoot( appReducer ),
+    StoreDevtoolsModule,
   ],
   providers: [
     {provide: FIREBASE_OPTIONS,
-    useValue: environment.firebase}
+    useValue: environment.firebase},
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !environment.production,
+    }),
+    
   ],
   bootstrap: [AppComponent]
 })
