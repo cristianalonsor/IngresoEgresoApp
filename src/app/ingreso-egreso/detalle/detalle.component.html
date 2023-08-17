@@ -10,16 +10,34 @@
               <th>Descripción</th>
               <th>Monto</th>
               <th>Tipo</th>
-              <th></th>
+              <th>Acciones</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
-              <td>Descripción</td>
-              <td>Monto</td>
-              <td>Tipo</td>
-              <td>acciones</td>
+            <tr *ngFor="let item of itemList | ordenAlfabetico">
+              <td><b>{{item.description | titlecase}}</b></td>
+              <td><b>${{item.monto | number}}</b></td>
+              <td [class.text-success]="item.tipo==='ingreso'"
+                  [class.text-danger]="item.tipo==='egreso'">
+                <b>{{item.tipo | titlecase}}</b>
+              </td>
+              <td>
+                <button type="button"
+                class="btn btn-danger"
+                (click)="deleteItem(item)"
+                >
+                  <i class="fa fa-trash"></i>
+                  Borrar
+                </button>
+                <button type="button"
+                class="btn btn-success"
+                (click)="editarItem(item)"
+                >
+                  <i class="fa fa-edit"></i>
+                  Editar
+                </button>
+              </td>
             </tr>
           </tbody>
 

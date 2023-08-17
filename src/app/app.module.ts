@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { StoreModule } from '@ngrx/store';
+import { NgChartsModule } from 'ng2-charts';
 
 //Firebase
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -26,6 +27,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { appReducer } from './app.reducer';
 import { provideStoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { OrdenIngresosPipe } from './pipes/orden-ingresos.pipe';
+import { OrdenAlfabeticoPipe } from './pipes/orden-alfabetico.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { provideStoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools'
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
+    OrdenIngresosPipe,
+    OrdenAlfabeticoPipe,
   ],
   imports: [
     CommonModule,
@@ -51,6 +56,7 @@ import { provideStoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools'
     provideFirestore(() => getFirestore()),
     StoreModule.forRoot( appReducer ),
     StoreDevtoolsModule,
+    NgChartsModule
   ],
   providers: [
     {provide: FIREBASE_OPTIONS,
