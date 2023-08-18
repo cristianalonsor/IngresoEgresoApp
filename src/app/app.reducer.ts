@@ -12,11 +12,13 @@ import * as ingresoEgreso from './ingreso-egreso/store/ingreso-egreso.reducer';
 export interface AppState {
     ui: uiReducer.State,
     auth: authReducer.State,
-    ingresoEgreso: ingresoEgreso.State
+    //no lo manejamos acá ya, porque ahora se maneja por lazyload
+    // ingresoEgreso: ingresoEgreso.State
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
     ui: uiReducer.uiReducer,
     auth: authReducer.authReducer,
-    ingresoEgreso: ingresoEgreso.ieReducer,
+    //no lo manejamos acá ya, porque ahora se maneja por lazyload
+    // ingresoEgreso: ingresoEgreso.ieReducer,
 }

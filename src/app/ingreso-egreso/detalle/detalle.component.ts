@@ -7,6 +7,7 @@ import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
 import Swal from 'sweetalert2';
 import { isLoading } from 'src/app/shared/ui.actions';
 import { stopLoading } from '../../shared/ui.actions';
+import { AppStateIngreso } from '../store/ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-detalle',
@@ -18,7 +19,7 @@ export class DetalleComponent implements OnInit, OnDestroy {
   itemListSubscription!: Subscription;
   orden: string = 'no orden'
 
-  constructor(private store: Store<AppState>,
+  constructor(private store: Store<AppStateIngreso>,
     private ieService: IngresoEgresoService) { }
 
   ngOnInit(): void {

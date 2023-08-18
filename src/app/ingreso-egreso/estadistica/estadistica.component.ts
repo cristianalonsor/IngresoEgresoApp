@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
 import { Subscription } from 'rxjs';
 import { IngresoEgreso } from '../../models/ingreso-egreso.model';
 
 //CHART
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { AppStateIngreso } from '../store/ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-estadistica',
@@ -44,7 +44,7 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppStateIngreso>) {}
 
   ngOnInit(): void {
     console.log('oninit');

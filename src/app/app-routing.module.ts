@@ -8,17 +8,20 @@ import { AuthGuard } from "./services/auth.guard";
 
 
 const routes: Routes = [
-    { 
-        path: '',
-        component: DashboardComponent,
-        children: dashboardRoutes,
-        canActivate: [
-            AuthGuard
-        ]
-    },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: '**', redirectTo: '' },
+    //CARGANDO POR LAZYLOAD EL MODULO MÁS GRANDE DE LA APP
+    {
+        path: '',
+        //Resolvemos la promesa de la ruta para traernos el modulo cuando ya esté cargando la app
+        loadChildren: () => import('./ingreso-egreso/ingreso-egreso.module').then(
+            m => m.IngresoEgresoModule
+        ),
+        canLoad: [
+            AuthGuard,
+        ]
+    },
 ]
 
 @NgModule({

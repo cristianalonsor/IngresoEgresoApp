@@ -44,7 +44,7 @@ export class AuthService {
       } else {
         this._user = null;
         //Las subscripciones que se llaman más de una vez hay que terminarlas
-        this.authSubscription.unsubscribe()
+        this.authSubscription?.unsubscribe()
         //purgamos el store al cerrar sesión
         this.store.dispatch(ieActions.unsetItems())
         this.store.dispatch(authActions.unsetUser());
